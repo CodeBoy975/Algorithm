@@ -18,7 +18,6 @@ public class SkipList {
      */
     private Node head = new Node(MAX_LEVEL);
 
-
     private Random r = new Random();
 
     public Node find(int value) {
@@ -67,14 +66,13 @@ public class SkipList {
             if (level > i) {
                 update[i] = p;
             }
-
         }
         for (int i = 0; i < level; ++i) {
             newNode.forwards[i] = update[i].forwards[i];
             update[i].forwards[i] = newNode;
         }
-
     }
+
 
     /**
      * 优化了作者zheng的插入方法2
@@ -107,9 +105,7 @@ public class SkipList {
                 }
             }
         }
-
     }
-
 
     public void delete(int value) {
         Node[] update = new Node[levelCount];
@@ -156,7 +152,6 @@ public class SkipList {
         }
         System.out.println();
     }
-
 
     /**
      * 打印所有数据
