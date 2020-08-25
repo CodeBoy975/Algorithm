@@ -20,7 +20,7 @@ import java.util.HashMap;
  * @author pengjie_yao
  * @date 2020/8/21 11:00
  */
-public class TwoNumberIntersection {
+public class leetcode350TwoNumberIntersection {
 
 
     /**
