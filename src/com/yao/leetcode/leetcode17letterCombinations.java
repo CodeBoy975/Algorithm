@@ -6,15 +6,16 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *  电话号码的字母组合
- *  题目描述：
- *  给定一个仅包含数字 2-9 的字符串，返回所有它能表示的字母组合。
- *
+ * 电话号码的字母组合
+ * 题目描述：
+ * 给定一个仅包含数字 2-9 的字符串，返回所有它能表示的字母组合。
+ * <p>
  * 给出数字到字母的映射如下（与电话按键相同）。注意 1 不对应任何字母。
  * 示例:
- *
+ * <p>
  * 输入："23"
  * 输出：["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"].
+ *
  * @author pengjie_yao
  * @date 2020/8/26 16:05
  */
@@ -38,35 +39,34 @@ public class leetcode17letterCombinations {
         phoneMap.put('7', "pqrs");
         phoneMap.put('8', "tuv");
         phoneMap.put('9', "wxyz");
-
         // 2.回溯
         backtrack(combinations, phoneMap, digits, 0, new StringBuffer());
         return combinations;
     }
 
     /**
-     *
      * @param combinations 存储的结果
-     * @param phoneMap  数字下的组合map
-     * @param digits   输入的数字符串
-     * @param index   字母的组合下标
-     * @param combination 拼接的组合字符串
+     * @param phoneMap     数字下的组合map
+     * @param digits       输入的数字符串
+     * @param index        数字的下标
+     * @param combination  拼接的组合字符串
      */
     private static void backtrack(List<String> combinations, Map<Character, String> phoneMap, String digits, int index, StringBuffer combination) {
 
+        // 递归的结束条件，当遍历到的下标等于输入的字符串长度，则停止递归。直接拼接好放入集合中
         if (index == digits.length()) {
             combinations.add(combination.toString());
-        }else {
+        } else {
             // 获取输入字符串下的第一个数字
             char digit = digits.charAt(index);
-            // 从map中获取数字下的组合
+            // 从map中获取数字下的字母组合
             String letters = phoneMap.get(digit);
             int lettersCount = letters.length();
             // 遍历数字下的字母组合
             for (int i = 0; i < lettersCount; i++) {
-                // 进行可能组合的拼接
+                // 进行可能组合的拼接 a
                 combination.append(letters.charAt(i));
-                // 重复
+                // 对于2中的a,然后遍历3中的组合组合，来进行拼接
                 backtrack(combinations, phoneMap, digits, index + 1, combination);
                 // 删除  ab -> a ,继续回溯组合
                 combination.deleteCharAt(index);
